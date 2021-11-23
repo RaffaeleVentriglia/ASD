@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
 
-class InsertionSort {
+class Algoritmo {
     public:
-        void algoritmo(int*, int, int);
+        void InsertionSort(int*, int, int);
         void stampa(int*, int);
 };
 
-void InsertionSort::algoritmo(int* arr, int key, int length) {
+void Algoritmo::InsertionSort(int* arr, int key, int length) {
     int i;
     for(int j = 2; j <= length; j++) {
         key = arr[j];
@@ -21,7 +21,7 @@ void InsertionSort::algoritmo(int* arr, int key, int length) {
     stampa(arr, length);
 }
 
-void InsertionSort::stampa(int* arr, int length) {
+void Algoritmo::stampa(int* arr, int length) {
     for(int i = 0; i < length; i++) {
         cout << arr[i] << endl;
     }
