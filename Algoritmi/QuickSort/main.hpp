@@ -8,6 +8,7 @@ class Algoritmo {
         void QuickSort(int*, int, int);
         int Partition(int*, int, int);
         void stampa(int*, int);
+        void swap(int&, int&);
 };
 
 void Algoritmo::QuickSort(int* arr, int p, int r) {
@@ -18,8 +19,23 @@ void Algoritmo::QuickSort(int* arr, int p, int r) {
     }
 }
 
-int Algoritmo::Partition(int* arr, ) {
+int Algoritmo::Partition(int* arr, int p, int r) {
+    int x = arr[r];
+    int i = p-1;
+    for(int j = p; j <= r-1; j++) {
+        if(arr[j] <= x) {
+            i = i+1;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i+1], arr[r]);
+    return i+1;
+}
 
+void Algoritmo::swap(int &a, int &b) {
+    int T = a;
+    a = b;
+    b = T;
 }
 
 void Algoritmo::stampa(int* arr, int length) {
