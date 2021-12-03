@@ -1,6 +1,21 @@
 #include <iostream>
 using namespace std;
 
+// STRUTTURA ALBERO RB
+typedef enum { red, black } color;
+struct rbnode {
+    int key;
+    color c;
+    struct rbnode *left, *right, *up;
+};
+typedef struct rbnode rbnode;
+typedef struct {
+    rbnode *root; // radice dell'albero
+    rbnode *nil; // foglie dell'albero
+} rbtree;
+
+
+
 // funzioni standard per stampa e scambio di dati
 void stampa(int*, int);
 void compSwap(int&, int&);
@@ -16,6 +31,7 @@ void heapify(int*, int, int);
 void countSort(int*, int);
 void countingSort (int*, int);
 void radixsort(int*, int);
+rbtree *createrbtree();
 
 void stampa(int* arr, int length) {
     for(int i = 0; i < length; i++) {
@@ -169,4 +185,20 @@ void radixsort(int array[], int size) {
     // gli elementi in base al valore posizionale
     for (int place = 1; max / place > 0; place *= 10)
         QuickSort(array, size, place);
+}
+
+rbtree *createrbtree() {
+    rbtree *t = new rbtree;
+    if(!t) {
+        fprintf(stderr, "Errore nell'allocazione\n");
+        exit(-1);
+    }
+    t->root = new rbnode;
+    if(!(t->root)) {
+        fprintf(stderr, "Errore nell'allocazione\n");
+        exit(-2);
+    }
+    t->nil = t->root;
+    t->nil->left = t->nil->right = t->nil->up = t->nil;
+    t->nil->c = black;
 }
