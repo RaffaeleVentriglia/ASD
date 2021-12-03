@@ -10,5 +10,7 @@ int main() {
     InsertionSort(arr, key, length);
     cout << "BubbleSort" << endl;
     BubbleSort(arr, left, length);
+    cout << "CountingSort" << endl;
+    countingSort(arr, length);
     return 0;
 }

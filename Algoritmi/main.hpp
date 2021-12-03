@@ -158,6 +158,7 @@ void countingSort (int *A, int lengthA) {
             C[i]--;
         }
     }
+    stampa(A, lengthA);
     delete[] C;
 }
 
