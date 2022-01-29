@@ -31,7 +31,7 @@ void heapify(int*, int, int);
 void countSort(int*, int);
 void countingSort (int*, int);
 void radixsort(int*, int);
-rbtree *createrbtree();
+//rbtree *createrbtree();
 
 void stampa(int* arr, int length) {
     for(int i = 0; i < length; i++) {
@@ -86,7 +86,7 @@ void BubbleSort(int* arr, int left, int right) {
 void QuickSort(int* arr, int p, int r) {
     if(p < r) {
         int q = Partition(arr, p, r);
-        QuickSort(arr, p, q);
+        QuickSort(arr, p, q-1);
         QuickSort(arr, q+1, r);
     }
 }
