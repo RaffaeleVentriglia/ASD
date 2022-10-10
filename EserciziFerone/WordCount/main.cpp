@@ -1,4 +1,3 @@
-#include <iostream>
 #include "wCount.hpp"
 
 int main() {
@@ -14,7 +13,7 @@ int main() {
     /*
     std::map<std::string, int> parole;
     std::map<std::string, int>::iterator it;
-    std::ifstream input("testo.txt");
+    std:ifstream input("testo.txt");
     std::string str;
     while(input >> str) {
         it = parole.find(str);
