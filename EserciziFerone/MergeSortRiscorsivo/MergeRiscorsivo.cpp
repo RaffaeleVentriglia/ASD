@@ -1,7 +1,12 @@
+/*
+    Progettare ed implementare una
+    procedura merge ricorsiva
+*/
+
 #include <iostream>
 
 void merge(int *v, int begin, int mid, int end) {
-    
+
 }
 
 void mergesort(int *v, int begin, int end) {
