@@ -1,6 +1,7 @@
 /*
     Riscrivere il Merge Sort utilizzando 
     il contenitore Vector ed un iteratore
+    Aggiornamento
 */
 
 #include <iostream>
