@@ -6,13 +6,13 @@ int main() {
     int length = 9;
     int left = 0;
 
-    QuickSort(arr,left,length); 
+    QuickSort(arr,left,length);
     stampa(arr,9);
-    /*cout << "InsertionSort" << endl;
+    cout << "InsertionSort" << endl;
     InsertionSort(arr, key, length);
     cout << "BubbleSort" << endl;
     BubbleSort(arr, left, length);
     cout << "CountingSort" << endl;
-    countingSort(arr, length);*/
+    countingSort(arr, length);
     return 0;
 }
