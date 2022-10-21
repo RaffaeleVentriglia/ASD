@@ -25,12 +25,12 @@ void swap(int& x, int& y) {
 }
 
 int partition(int *arr, int left, int right) {
-    int i = left - 1;
-    int piv = right;
+    int i = left - 1; // lo posiziono a prima del primo elemento
+    int piv = right; // pivot uguale all'ultimo elemento
     while(true) {
-        while(arr[++i] <= piv);
-        while(piv < arr[--piv])
-            if(piv == left)
+        while(arr[++i] <= piv); // cerco gli elementi più piccoli del pivot
+        while(piv < arr[--piv]) // cerco gli elementi più grandi del pivot
+            if(piv == left) // controllo appena finisco di iterare tutto l'array
                 break;
         if(i >= piv)
             break;
