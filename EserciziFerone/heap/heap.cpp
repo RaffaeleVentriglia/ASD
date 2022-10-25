@@ -2,56 +2,56 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include "maxHeap.hpp"
 using namespace std;
 
-template <typename T>
-void swap(T *x, T *y) {
-    T temp = *x;
-    *x = *y;
-    *y = temp;
-}
+// template <typename T>
+// void swap(T *x, T *y) {
+//     T temp = *x;
+//     *x = *y;
+//     *y = temp;
+// }
 
+// template <typename T>
+// void heapify2(vector<T> vec, T i) {
+//     int size = vec.size(); // trovo il size dell'array
+//     T largest = i; // imposto i come il più grande elemento
+//     T left = 2*i+1, right = 2*i+2;
+//     if(left < size && vec[left] > vec[largest])
+//         largest = left;
+//     if(right < size && vec[right] > vec[largest])
+//         largest = right;
+//     if(largest != i) {
+//         swap(vec[i], vec[largest]);
+//         heapify2(vec, largest);
+//     }
+// }
 
-template <typename T>
-void heapify2(vector<T> vec, T i) {
-    int size = vec.size(); // trovo il size dell'array
-    T largest = i; // imposto i come il più grande elemento
-    T left = 2*i+1, right = 2*i+2;
-    if(left < size && vec[left] > vec[largest])
-        largest = left;
-    if(right < size && vec[right] > vec[largest])
-        largest = right;
-    if(largest != i) {
-        swap(vec[i], vec[largest]);
-        heapify2(vec, largest);
-    }
+// template <typename T>
+// void build_max_heap(vector<T> vec) {
+//     int size = vec.size();
+//     for(int i = (size/2); i >= 1; i--)
+//         heapify2(vec, i);
+// }
 
+// template <typename T>
+// void insert(vector<T> vec, T newN) {
+//     int size = vec.size();
+//     if(size == 0)
+//         vec.push_back(newN);
+//     else {
+//         vec.push_back(newN);
+//         for(int i = size/2-1; i >= 0; i--)
+//             heapify(vec, i);
+//     }
+// }
 
-template <typename T>
-void build_max_heap(vector<T> vec) {
-    int size = vec.size();
-    for(int i = (size/2); i >= 1; i--)
-        heapify2(vec, i);
-}
-
-template <typename T>
-void insert(vector<T> vec, T newN) {
-    int size = vec.size();
-    if(size == 0)
-        vec.push_back(newN);
-    else {
-        vec.push_back(newN);
-        for(int i = size/2-1; i >= 0; i--)
-            heapify(vec, i);
-    }
-}
-
-template <typename T>
-void print(vector<T> vec) {
-    for(size_t i = 0; i < vec.size(); ++i)
-        cout << vec[i] << " ";
-    cout << "\n";
-}
+// template <typename T>
+// void print(vector<T> vec) {
+//     for(size_t i = 0; i < vec.size(); ++i)
+//         cout << vec[i] << " ";
+//     cout << "\n";
+// }
 
 void heapify(int *arr, int arr_size, int subtree) {
     int largest = subtree;
@@ -82,7 +82,23 @@ void printHeap(int *arr, int arr_size) {
 
 int main() {
     srand((unsigned)time(0));
-    vector<int> heap;
+    MaxHeap<int> tree(new vector<int>, 0);
+    /*
+    for(size_t i = 0; i < 5; i++) {
+        int n = (rand()%10)+1;
+        tree.insert(n);
+    }
+    */
+    tree.insert(20);
+    tree.insert(40);
+    tree.insert(60);
+    tree.insert(70);
+    tree.insert(1);
+    tree.insert(2);
+    tree.insert(5);
+    tree.insert(100);
+    tree.insert(200);
+    tree.print();
     //    insert(heap, 3);
 
 	/*
@@ -96,10 +112,10 @@ int main() {
     print(heap);
     */
 
-    int arr[] = {1,5,2,10,50,25,30,60};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    construct_heap(arr, size);
-    printHeap(arr, size);
+    // int arr[] = {1,5,2,10,50,25,30,60};
+    // int size = sizeof(arr)/sizeof(arr[0]);
+    // construct_heap(arr, size);
+    // printHeap(arr, size);
     
     return 0;
 }
