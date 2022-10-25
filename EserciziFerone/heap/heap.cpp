@@ -5,54 +5,6 @@
 #include "maxHeap.hpp"
 using namespace std;
 
-// template <typename T>
-// void swap(T *x, T *y) {
-//     T temp = *x;
-//     *x = *y;
-//     *y = temp;
-// }
-
-// template <typename T>
-// void heapify2(vector<T> vec, T i) {
-//     int size = vec.size(); // trovo il size dell'array
-//     T largest = i; // imposto i come il più grande elemento
-//     T left = 2*i+1, right = 2*i+2;
-//     if(left < size && vec[left] > vec[largest])
-//         largest = left;
-//     if(right < size && vec[right] > vec[largest])
-//         largest = right;
-//     if(largest != i) {
-//         swap(vec[i], vec[largest]);
-//         heapify2(vec, largest);
-//     }
-// }
-
-// template <typename T>
-// void build_max_heap(vector<T> vec) {
-//     int size = vec.size();
-//     for(int i = (size/2); i >= 1; i--)
-//         heapify2(vec, i);
-// }
-
-// template <typename T>
-// void insert(vector<T> vec, T newN) {
-//     int size = vec.size();
-//     if(size == 0)
-//         vec.push_back(newN);
-//     else {
-//         vec.push_back(newN);
-//         for(int i = size/2-1; i >= 0; i--)
-//             heapify(vec, i);
-//     }
-// }
-
-// template <typename T>
-// void print(vector<T> vec) {
-//     for(size_t i = 0; i < vec.size(); ++i)
-//         cout << vec[i] << " ";
-//     cout << "\n";
-// }
-
 void heapify(int *arr, int arr_size, int subtree) {
     int largest = subtree;
     int left = 2*subtree+1;
