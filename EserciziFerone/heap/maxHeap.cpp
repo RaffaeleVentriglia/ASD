@@ -1,3 +1,14 @@
+/*
+    Esercizio
+    • Progettare ed implementare una classe template Max-Heap
+    dotata delle seguenti operazioni
+    • Max-Heapify
+    • Build-Max-Heap
+    • Insert
+    • PrintArray
+    • (PrintAsciiTree)
+*/
+
 #include <iostream>
 #include <vector>
 #include <ctime>
