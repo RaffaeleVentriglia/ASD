@@ -20,9 +20,20 @@ class MaxHeap {
         void swap(T& a, T& b);
     public:
         MaxHeap(vector<T>* tree, int heapSize);
+        void heapSort(vector<T>* tree);
         void insert(T key);
         void print();
 };
+
+template <typename T>
+void MaxHeap<T>::heapSort(vector<T>* tree) {
+    buildMaxHeap(tree);
+    for(int j = tree.size(); j < 2; j--) {
+        swap(this->tree.at(1), this->tree.at(j));
+        heapSize -= 1;
+        maxHeapify(1);
+    }
+}
 
 template <typename T>
 MaxHeap<T>::MaxHeap(vector<T>* tree, int heapSize) {

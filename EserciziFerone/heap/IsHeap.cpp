@@ -24,7 +24,7 @@ bool checkHeap(int *arr, int size, int i) {
 
 int main() {
     int arr1[] = {1,5,20,50,3,9,7}; // false
-    int arr2[] = {20,19,16,10}; // true
+    int arr2[] = {200,100,40,70,1,2,5,20,60}; // true
     bool isHeap1 = checkHeap(arr1, sizeof(arr1)/sizeof(arr1[0]), 0);
     bool isHeap2 = checkHeap(arr2, sizeof(arr2)/sizeof(arr2[0]), 0);
     std::cout << std::boolalpha << "isHeap: " << isHeap1 << std::endl;
