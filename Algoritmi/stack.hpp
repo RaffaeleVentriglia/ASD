@@ -29,7 +29,7 @@ stack<T>::~stack() {
 template <typename T>
 void stack<T>::push(T elem) {
     if(top == dim-1) {
-        t* tmp;
+        T* tmp;
         tmp = new T[dim+10];
         for(int i = 0; i < dim; i++)
             tmp[i] = vet[i];
