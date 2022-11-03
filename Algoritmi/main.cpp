@@ -7,6 +7,8 @@
 #include "stack.hpp"
 #include "LinkedList.hpp"
 #include "MinHeap.hpp"
+#include "MaxKheap.hpp"
+#include "MinKheap.hpp"
 using namespace std;
 
 int main() {
@@ -54,5 +56,13 @@ int main() {
     minHeap.insert(30);
     minHeap.insert(1);
     minHeap.print();
+
+    // * USO DEL MAX K HEAP
+    maxKheap<int> kMaxHeap(3);
+    kMaxHeap.insert(9);
+    kMaxHeap.insert(1);
+    kMaxHeap.insert(4);
+    kMaxHeap.insert(7);
+    kMaxHeap.print();
     return 0;
 }
