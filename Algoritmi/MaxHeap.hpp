@@ -80,10 +80,10 @@ void MaxHeap<T>::maxHeapify(int i) {
 template <typename T>
 void MaxHeap<T>::insert(T key) {
     heapSize++;
-    this->heap.push_back(key);
+    this->heap->push_back(key);
     int i = heapSize-1;
-    while(i != 0 && this->heap.at(parent(i)) < this->heap.at(i)) {
-        swap(this->heap.at(i), this->heap.at(parent(i)));
+    while(i != 0 && this->heap->at(parent(i)) < this->heap->at(i)) {
+        swap(this->heap->at(i), this->heap->at(parent(i)));
         i = parent(i);
     }
 }
@@ -92,7 +92,7 @@ template <typename T>
 void MaxHeap<T>::print() {
     cout << "MAxHeap" << endl;
     for(int i = 0; i < heapSize; i++)
-        cout << heap.at(i) << " ";
+        cout << heap->at(i) << " ";
     cout << endl;
 }
 

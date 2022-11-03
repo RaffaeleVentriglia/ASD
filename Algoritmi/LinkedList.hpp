@@ -57,7 +57,7 @@ void LinkedList<T>::InsHead(T* new_nodo) {
 template <typename T>
 void LinkedList<T>::InsLast(T* new_nodo) {
     nodo<T>* node = new nodo<T>(nullptr, new_nodo);
-    last -> setNext(node);
+    last -> SetNext(node);
     last = node;
 }
 
