@@ -2,6 +2,10 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include "MaxHeap.hpp"
+#include "nodo.hpp"
+#include "stack.hpp"
+#include "LinkedList.hpp"
 using namespace std;
 
 int main() {
