@@ -64,5 +64,14 @@ int main() {
     kMaxHeap.insert(4);
     kMaxHeap.insert(7);
     kMaxHeap.print();
+
+    // * USO DEL MIN K HEAP
+    minKheap<int> kMinHeap(3);
+    kMinHeap.insert(9);
+    kMinHeap.insert(1);
+    kMinHeap.insert(4);
+    kMinHeap.insert(7);
+    kMinHeap.print();
+
     return 0;
 }
