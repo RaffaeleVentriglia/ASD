@@ -36,7 +36,7 @@ class algoritmi {
         // * Heap Sort
         template <typename T> static void HeapSort(vector<T>*);
         // * Counting Sort
-        static void countingSort(vector<int>*,int);
+        template <typename T> static void countingSort(vector<T>*,int);
         // TODO Radix Sort
         // TODO Bucket Sort
 };
@@ -119,7 +119,6 @@ typename vector<T>::iterator algoritmi::randomizedPartition(typename vector<T>::
 }
 
 // * InsertionSort
-
 template <typename T>
 void algoritmi::insertionSort(typename vector<T>::iterator begin, typename vector<T>::iterator end) {
     typename vector<T>::iterator i, j;
@@ -136,7 +135,6 @@ void algoritmi::insertionSort(typename vector<T>::iterator begin, typename vecto
 }
 
 // * BubbleSort
-
 template <typename T>
 void algoritmi::swap(T& x, T& y) {
     T tmp = x;

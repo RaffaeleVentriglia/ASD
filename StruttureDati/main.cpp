@@ -9,6 +9,7 @@
 #include "MinHeap.hpp"
 #include "MaxKheap.hpp"
 #include "MinKheap.hpp"
+#include "MaxPriorityQueue.hpp"
 using namespace std;
 
 int main() {
@@ -72,6 +73,10 @@ int main() {
     kMinHeap.insert(4);
     kMinHeap.insert(7);
     kMinHeap.print();
+
+    // * USO DEL MAX PRIORITY QUEUE
+    MaxPriorityQueue<int> ppp;
+    ppp.print();
 
     return 0;
 }

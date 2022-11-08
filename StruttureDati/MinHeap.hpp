@@ -15,8 +15,8 @@ class MinHeap {
         void buildMinHeap();
     protected:
         int parent(int i){return (i-1)/2;}
-        T getRoot(){return this->heap.at(0);}
-        T getTaill(){return this->heap.at(heapSize-1);}
+        T getRoot(){return this->heap->at(0);}
+        T getTaill(){return this->heap->at(heapSize-1);}
         vector<T>* getHeap(){return this->heap;}
         void setHeap(int i, T key){this->heap.at(i) = key;}
         void setHeapSize(int heapSize){this->heapSize = heapSize;}
@@ -40,7 +40,7 @@ MinHeap<T>::MinHeap() {
 template <typename T>
 MinHeap<T>::MinHeap(vector<T>* heap) {
     this->heap = heap;
-    this->heapSize = heap.size();
+    this->heapSize = heap->size();
     buildMinHeap();
 }
 
@@ -75,12 +75,12 @@ void MinHeap<T>::minHeapify(int i) {
     int min = i;
     int leftC = left(i);
     int rightC = right(i);
-    if(leftC < heapSize && this->heap.at(min) > this->heap.at(leftC))
+    if(leftC < heapSize && this->heap->at(min) > this->heap->at(leftC))
         min = leftC;
-    if(rightC < heapSize && this->heap.at(min) > this->heap.at(rightC))
+    if(rightC < heapSize && this->heap->at(min) > this->heap->at(rightC))
         min = rightC;
     if(min != i) {
-        swap(this->heap.at(i), this->heap.at(min));
+        swap(this->heap->at(i), this->heap->at(min));
         minHeapify(min);
     }
 }
