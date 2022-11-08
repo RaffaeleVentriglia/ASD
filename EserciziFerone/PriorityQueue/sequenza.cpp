@@ -17,7 +17,7 @@ using namespace std;
 int main() {
     vector<int> sequenza = {10, 3, 21, 1, -1, 45, 8, 12, 78};
     vector<int>* vec = new vector<int>;
-    const int k = 5;
+    const int k = 3;
     for(int i = 0; i < k; i++)
         vec->push_back(sequenza.at(i));
     cout << "K: " << k << endl;
