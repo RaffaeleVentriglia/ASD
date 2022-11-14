@@ -1,49 +1,40 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
+#include <iostream>
+
 template <typename T>
 class Node {
     private:
-        T key;
-        Node<T>* parent;
-        Node<T>* left;
-        Node<T>* right;
+        T data;
+        Node *parent;
+        Node *left;
+        Node *right;
     public:
-        Node(T*, Node<T>*, Node<T>*, Node<T>*);
         Node(T);
         ~Node();
-        void setKey(T* key){this->key = key;}
-        void setParent(Node<T>* parent){this->parent = parent;}
-        void setLeft(Node<T>* left){this->left = left;}
-        void setRight(Node<T>* right){this->right = right;}
-        T getKey(){return this->key;}
-        Node<T> *getParent(){return this->parent;}
-        Node<T> *getLeft(){return this->left;}
-        Node<T> *getRight(){return this->right;}
+        void setParent(Node *p){parent = p;}
+        void setLeft(Node *l){left = l;}
+        void setRight(Node *r){right = r;}
+        void setData(T d){data = d;}
+        Node *getParent(){return parent;}
+        Node *getLeft(){return left;}
+        Node *getRight(){return right;}
+        T getData(){return data;}
 };
 
-template <typename T>
-Node<T>::Node(T* key, Node<T>* parent, Node<T>* left, Node<T>* right) {
-    this->key = key;
-    this->parent = parent;
-    this->left = left;
-    this->right = right;
+template <typename T> Node<T>::Node(T d) {
+    parent = nullptr;
+    left = nullptr;
+    right = nullptr;
+    data = d;
 }
 
-template <typename T>
-Node<T>::Node(T key) {
-    this->key = key;
-    this->parent = nullptr;
-    this->left = nullptr;
-    this->right = nullptr;
-}
-
-template <typename T>
-Node<T>::~Node() {
-    delete key;
+template <typename T> Node<T>::~Node() {
     delete parent;
     delete left;
     delete right;
+    delete data;
 }
 
 #endif

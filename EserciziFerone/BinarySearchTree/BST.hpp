@@ -3,150 +3,190 @@
 
 #include "node.hpp"
 #include <iostream>
-using namespace std;
 
-template <typename T>
+template <class T>
 class BST {
     private:
-        Node<T>* root;
-        void InsNode(T, Node<T>*, Node<T>*);
+        Node<T> *root;
+        void insertRic(T, Node<T>*, Node<T>*);
+        void insertNode(T, Node<T>*, Node<T>*);
+        void transplant(Node<T>*, Node<T>*);
+        bool isEmpty(){return root == nullptr;}
+        Node<T> *findSuccessor(Node<T> *);
+        Node<T> *findPredecessor(Node<T> *);
     public:
-        BST(Node<T>*);
-        BST();
+        BST(){root = nullptr;};
         ~BST();
         Node<T> *getRoot(){return root;}
-        void search(T);
-        Node<T> *search(T, Node<T>*);
-        void minimum();
-        Node<T> *minimum(Node<T>*);
-        void maximum();
-        Node<T> *maximum(Node<T>*);
-        void predecessor(T);
-        void successor(T);
-        void insert(T);
-        void insert(T, Node<T>*, Node<T>*);
-        void deleteNode(Node<T>*);
+        void insert(T value){insertRic(value, nullptr, root);};
+        Node<T> *treeSearch(Node<T> *, T);
+        Node<T> *minimumTree(Node<T> *);
+        Node<T> *maximumTree(Node<T> *);
+        Node<T> *successor(Node<T> *);
+        Node<T> *predecessor(Node<T> *);
+        void treeDelete(Node<T> *);
+        void preorderVisit(Node<T> *);
+        void inorderVisit(Node<T> *);
+        void postorderVisit(Node<T> *);
 };
 
 template <typename T>
-BST<T>::BST(Node<T>* root) {
-    this->root = root;
-}
+BST<T>::~BST() {}
 
 template <typename T>
-BST<T>::BST() {
-    this->root = nullptr;
-}
-
-template <typename T>
-BST<T>::~BST(){}
-
-template <typename T>
-void BST<T>::search(T key) {
-    Node<int>* tmp = this->search(key, this->getRoot());
-    if(tmp == nullptr)
-        cout << "Nodo " << key << " non è stato trovato\n";
+void BST<T>::insertRic(T value, Node<T>* prev, Node<T>* cur) {
+    if(root == nullptr)
+        root = new Node<T>(value);
+    else if(cur == nullptr)
+        insertNode(value, prev, cur);
+    else if(cur->getData() > value)
+        insertRic(value, cur, cur->getLeft());
     else
-        cout << "Nodo " << key << " trovato: " << tmp->getKey() << endl;
+        insertRic(value, cur, cur->getRight());
 }
 
 template <typename T>
-Node<T>* BST<T>::search(T key, Node<T>* node) {
-    if(node == nullptr || key == node->getKey())
-        return node;
-    if(key < node->getKey())
-        search(key, node->getLeft());
+void BST<T>::insertNode(T value, Node<T>* prev, Node<T>* cur) {
+    cur = new Node<T>(value);
+    cur->setParent(prev);
+    if(cur->getData() > prev->getData())
+        prev->setRight(cur);
     else
-        search(key, node->getRight());
+        prev->setLeft(cur);
 }
 
 template <typename T>
-void BST<T>::minimum() {
-    Node<T>* tmp = this->root;
-    while(tmp->getLeft() != nullptr)
-        tmp = tmp->getLeft();
-    cout << "Minimo: " << tmp->getKey() << endl;
-}
-
-template <typename T>
-Node<T>* BST<T>::minimum(Node<T>* node) {
-    while(node->getLeft() != nullptr)
-        node = node->getLeft();
-    return node;
-}
-
-template <typename T>
-void BST<T>::maximum() {
-    Node<T>* tmp = this->root;
-    while(tmp->getRight() != nullptr)
-        tmp = tmp->getRight();
-    cout << "Massimo: " << tmp->getKey() << endl;
-}
-
-template <typename T>
-Node<T>* BST<T>::maximum(Node<T>* node) {
-    while(node->getRight() != nullptr)
-        node = node->getRight();
-    return node;
-}
-
-template <typename T>
-void BST<T>::predecessor(T key) {
-    Node<T>* node = this->search(key, this->getRoot());
-    if(node->getLeft() != nullptr)
-        cout << "Predecessore di " << key << ": " << maximum(node->getLeft()) << endl;
-    Node<T>* pp = node->getParent();
-    while(pp != nullptr && node == pp->getLeft()) {
-        node = pp;
-        pp = pp->getParent();
-    }
-    cout << "Predecessore di " << key << ": " << pp->getKey() << endl;
-}
-
-template <typename T>
-void BST<T>::successor(T key) {
-    Node<T>* node = this->search(key, this->getRoot());
-    if(node->getRight() != nullptr)
-        cout << "Successore di " << key << ": " << minimum(node->getRight()) << endl;
-    Node<T>* pp = node->getParent();
-    while(pp != nullptr && node == pp->getRight()) {
-        node = pp;
-        pp = pp->getParent();
-    }
-    cout << "Successore di " << key << ": " << pp->getKey() << endl;
-}
-
-template <typename T>
-void BST<T>::insert(T key) {
-    this->insert(key, nullptr, this->getRoot());
-}
-
-template <typename T>
-void BST<T>::insert(T key, Node<T>* prev, Node<T>* cur) {
-    if(this->root != nullptr)
-        this->root = new Node<T>(key);
-    if(cur == nullptr)
-        InsNode(key, prev, cur);
-    else if(key > cur->getKey())
-        insert(key, cur, cur->getRight());
+Node<T>* BST<T>::treeSearch(Node<T>* x, T key) {
+    if(x == nullptr || key == x->getData())
+        return x;
+    if(key < x->getData())
+        return treeSearch(x->getLeft(), key);
     else
-        insert(key, cur, cur->getLeft());
+        return treeSearch(x->getRight(), key);
 }
 
-// TODO deleteNode
+template <typename T>
+Node<T>* BST<T>::maximumTree(Node<T>* current) {
+    if(isEmpty())
+        return nullptr;
+    else if(current->getRight() == nullptr)
+        return current;
+    else 
+        return maximumTree(current->getRight());
+}
 
 template <typename T>
-void BST<T>::InsNode(T key, Node<T>* prev, Node<T>* cur) {
-    if(prev != nullptr) {
-        cur = new Node<T>(key);
-        cur->setParent(prev);
-        if(key > prev->getKey())
-            prev->setRight(cur);
-        else
-            prev->setLeft(cur);
-    } else {
-        cur = new Node<T>(key);
+Node<T>* BST<T>::minimumTree(Node<T>* current) {
+    if(isEmpty())
+        return nullptr;
+    else if(current->getLeft() == nullptr)
+        return current;
+    else 
+        return minimumTree(current->getLeft());
+}
+
+template <typename T>
+void BST<T>::preorderVisit(Node<T>* current) {
+    if(current != nullptr) {
+        std::cout << current->getData() << " ";
+        preorderVisit(current->getLeft());
+        preorderVisit(current->getRight());
     }
 }
 
-#endif
+template <typename T>
+void BST<T>::inorderVisit(Node<T>* current) {
+    if(current != nullptr) {
+        inorderVisit(current->getLeft());
+        std::cout << current->getData() << " ";
+        inorderVisit(current->getRight());
+    }
+}
+
+template <typename T>
+void BST<T>::postorderVisit(Node<T>* current) {
+    if(current != nullptr) {
+        postorderVisit(current->getLeft());
+        postorderVisit(current->getRight());
+        std::cout << current->getData() << " ";
+    }
+}
+
+template <typename T>
+Node<T>* BST<T>::successor(Node<T>* current) {
+    if(current->getRight() != nullptr)
+        return minimumTree(current->getRight());
+    else 
+        return findSuccessor(current);
+}
+
+template <typename T>
+Node<T>* BST<T>::findSuccessor(Node<T>* current) {
+    if(current == nullptr)
+        return nullptr;
+    Node<T> *x = current->getParent();
+    if(x == nullptr)
+        return nullptr;
+    else if(current == x->getLeft())
+        return x;
+    else 
+        return findSuccessor(x);
+}
+
+template <typename T>
+Node<T>* BST<T>::predecessor(Node<T>* current) {
+    if(current->getLeft() != nullptr)
+        return maximumTree(current->getLeft());
+    else 
+        return findPredecessor(current);
+}
+
+template <typename T>
+Node<T>* BST<T>::findPredecessor(Node<T>* current) {
+    if(current == nullptr)
+        return nullptr;
+    Node<T> *x = current->getParent();
+    if(x == nullptr)
+        return nullptr;
+    else if(current == x->getRight())
+        return x;
+    else 
+        return findPredecessor(x);
+}
+
+template <typename T>
+void BST<T>::treeDelete(Node<T>* current) {
+    if(current == nullptr)
+        current = nullptr;
+    if(current->getLeft() == nullptr)
+        transplant(current, current->getRight());
+    else if(current->getRight() == nullptr)
+        transplant(current, current->getLeft());
+    else {
+        Node<T>* x = successor(current);
+        if(x->getParent() != current) {
+            transplant(x, x->getRight());
+            x->setRight(current->getRight());
+            (x->getRight())->setParent(x);
+        }
+        transplant(current, x);
+        x->setLeft(current->getLeft());
+        (x->getLeft())->setParent(x);
+    }
+}
+
+
+
+template <typename T>
+void BST<T>::transplant(Node<T>* to, Node<T>* from) {
+    if(to->getParent() == nullptr)
+        root = from;
+    else if(to == (to->getParent())->getLeft())
+        (to->getParent())->setLeft(from);
+    else
+        (to->getParent())->setRight(from);
+    if(from != nullptr)
+        from->setParent(to->getParent());
+}
+
+#endif /* BST_HPP */
