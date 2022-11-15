@@ -4,42 +4,45 @@
 using namespace std;
 
 int main() {
-    BST<int> abr;
-    abr.insert(13);
-    abr.insert(12);
-    abr.insert(16);
-    abr.insert(10);
-    abr.insert(11);
-    abr.insert(14);
-    abr.insert(17);
-    abr.insert(30);
-    abr.insert(20);
-    abr.insert(1);
+    BST<int> tree;
+    tree.insert(13);
+    tree.insert(12);
+    tree.insert(16);
+    tree.insert(10);
+    tree.insert(11);
+    tree.insert(14);
+    tree.insert(17);
+    tree.insert(30);
+    tree.insert(20);
+    tree.insert(1);
     cout << endl << "Preorder" << endl;
-    abr.preorderVisit(abr.getRoot());
+    tree.preorderVisit(tree.getRoot());
     cout << endl << "Inorder" << endl;
-    abr.inorderVisit(abr.getRoot());
+    tree.inorderVisit(tree.getRoot());
     cout << endl << "Postorder" << endl;
-    abr.postorderVisit(abr.getRoot());
+    tree.postorderVisit(tree.getRoot());
     cout << endl;
 
-    cout << "Massimo: " << abr.maximumTree(abr.getRoot())->getData() << endl;
-    cout << "Minimo: " << abr.minimumTree(abr.getRoot())->getData() << endl;
+    cout << "Massimo: " << tree.maximumTree(tree.getRoot())->getData() << endl;
+    cout << "Minimo: " << tree.minimumTree(tree.getRoot())->getData() << endl;
 
-    auto *cerca = abr.treeSearch(abr.getRoot(), 10);
-    cout << endl<< "Il successore di: "<< cerca->getData()<<" è: "<< abr.successor(cerca)->getData();
-    cout << endl<< "Il Predecessore di: "<< cerca->getData()<<" è: "<< abr.predecessor(cerca)->getData() << endl;
+    auto *cerca = tree.treeSearch(tree.getRoot(), 10);
+    cout << endl<< "Il successore di: "<< cerca->getData()<<" è: "<< tree.successor(cerca)->getData();
+    cout << endl<< "Il Predecessore di: "<< cerca->getData()<<" è: "<< tree.predecessor(cerca)->getData() << endl;
     
-    cout << "Cancello i nodi con i valori 14 e 10" << endl;
-    abr.treeDelete(abr.treeSearch(abr.getRoot(), 14));
-    abr.treeDelete(abr.treeSearch(abr.getRoot(), 10));
+    cout << "Cancello i nodi con i valori 30 e 10" << endl;
+    tree.treeDelete(tree.treeSearch(tree.getRoot(), 30));
+    tree.treeDelete(tree.treeSearch(tree.getRoot(), 10));
 
     cout << endl << "Preorder" << endl;
-    abr.preorderVisit(abr.getRoot());
+    tree.preorderVisit(tree.getRoot());
     cout << endl << "Inorder" << endl;
-    abr.inorderVisit(abr.getRoot());
+    tree.inorderVisit(tree.getRoot());
     cout << endl << "Postorder" << endl;
-    abr.postorderVisit(abr.getRoot());
+    tree.postorderVisit(tree.getRoot());
     cout << endl;
+
+    cout << "Massimo: " << tree.maximumTree(tree.getRoot())->getData() << endl;
+    cout << "Minimo: " << tree.minimumTree(tree.getRoot())->getData() << endl;
     return 0;
 }
