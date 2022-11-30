@@ -3,8 +3,7 @@
         {
             "type": "command",
             "name": "run",
-            "program": "g++",
-        },
-
+            "program": "$USER_HOME$/Desktop/Università/script.sh"
+        }
     ]
 }
